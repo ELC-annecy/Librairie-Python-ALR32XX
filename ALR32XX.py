@@ -627,7 +627,7 @@ class ALR32XX:
                         chaine=self.__write_command_toByte('OVP2', 'RD')
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
-            elif paraemtre=='OCP':
+            elif parametre=='OCP':
                 if self.nom=='ALR3203' or self.nom=='ALR3220':
                     if voie==1:
                         chaine=self.__write_command_toByte('OCP', 'RD')
