@@ -18,64 +18,12 @@
 		<p> <h3> <span class ="colorblue"> Caractéristiques des alimentations </h3></p>
 		<table>
 			<tr>
-				<th> ALR3203 </th>
-				<th> ALR3220 </th>
+				<th> ALR3206T </th>
 				<th> ALR3206D </th>
-				<th> ALR3206t </th>
+				<th> ALR3220 </th>
+				<th> ALR3203 </th>
 			</tr>
 			<tr>
-				<td>
-					<ul>
-						<li> Alimentation 1 voie </li>
-						<li> Puissance 96W max </li>
-						<li> Tension 0-32V / courant 0-6A </li>
-						<li> Résolutions 10mV et 2mA </li>
-						<li> Communication USB </li>
-						<li> Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur </li>
-						<li> OVP/OCP pour éviter les surtensions et surintensités </li>
-						<li> Rendement > 78% à puissance maximale </li>
-						<li> Fonction en U et I (arbitraire, carré, rampe montante et descendante périodique, temps de montée/descente monocoup) </li>
-						<li> Drivers et exécutable LabVIEW fournis </li>
-						<li> Température de fonctionnement : +5 à +40°C </li>
-						<li> Consommation 126W maxi </li>
-						<li> Drivers et exécutable LabVIEW fournis </li>
-					</ul>
-				</td>
-				<td>
-					<ul>
-						<li>Alimentation 1 voie </li>
-						<li>Puissance 640W max</li>
-						<li>Tension 0-32V / courant 0-20A </li>
-						<li> Résolutions 10mV et 10mA</li>
-						<li>Communication USB, RS232, RS485, (option LAN), 0-10V </li>
-						<li>Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur </li>
-						<li> OVP/OCP pour éviter les surtensions et surintensités</li>
-						<li> Rendement > 84% à puissance maximale</li>
-						<li>Température de fonctionnement : +5 à +40°C </li>
-						<li>Fonction en U et I (arbitraire, carré, rampe montante et descendante, temps de montée et descente) </li>
-						<li>Drivers et exécutable LabVIEW fournis </li>
-						<li>Consommation 770W maxi </li>
-					</ul>
-				</td>
-				<td>
-					<ul>
-						<li> Alimentation 2 voies</li>
-						<li>Puissance 385W max </li>
-						<li>Tension 0-32V / courant 0-6A sur les voies 1 et 2 </li>
-						<li>Mode série (0-64V/0-6A) et mode parallèle (0-32V/0-12V) </li>
-						<li> Résolutions 10mV et 2mA sur les voies 1 et 2 </li>
-						<li>Communication USB, RS232, RS485 et RS422 vers ETHERNET </li>
-						<li> Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur</li>
-						<li>OVP/OCP pour éviter les surtensions et surintensités </li>
-						<li>Rendement > 78% à puissance maximale </li>
-						<li> Température de fonctionnement : +5 à +40°C</li>
-						<li> Fonction en U et I (arbitraire, carré, rampe montante et
-descendante, temps de montée et descente)</li>
-						<li>Drivers et exécutable LabVIEW fournis </li>
-						<li>Consommation 490W maxi </li>
-					</ul>
-				</td>
-				</td>
 				<td>
 					<ul>
 						<li> Alimentation 3 voies</li>
@@ -96,7 +44,59 @@ excessifs et les surintensités à l’entrée du secteur </li>
 						<li>Fonction en U et I (arbitraire, carré, rampe montante et
 descendante, temps de montée et descente) </li>
 						<li>Drivers et exécutable LabVIEW fournis </li>
-						<li>Consommation 495W maxi </li>
+						<li>Consommation 495W maxi </li>>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li> Alimentation 2 voies</li>
+						<li>Puissance 385W max </li>
+						<li>Tension 0-32V / courant 0-6A sur les voies 1 et 2 </li>
+						<li>Mode série (0-64V/0-6A) et mode parallèle (0-32V/0-12V) </li>
+						<li> Résolutions 10mV et 2mA sur les voies 1 et 2 </li>
+						<li>Communication USB, RS232, RS485 et RS422 vers ETHERNET </li>
+						<li> Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur</li>
+						<li>OVP/OCP pour éviter les surtensions et surintensités </li>
+						<li>Rendement > 78% à puissance maximale </li>
+						<li> Température de fonctionnement : +5 à +40°C</li>
+						<li> Fonction en U et I (arbitraire, carré, rampe montante et
+descendante, temps de montée et descente)</li>
+						<li>Drivers et exécutable LabVIEW fournis </li>
+						<li>Consommation 490W maxi </li>
+					</ul>
+				</td>
+				<td>
+					<ul>
+						<li>Alimentation 1 voie </li>
+						<li>Puissance 640W max</li>
+						<li>Tension 0-32V / courant 0-20A </li>
+						<li> Résolutions 10mV et 10mA</li>
+						<li>Communication USB, RS232, RS485, (option LAN), 0-10V </li>
+						<li>Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur </li>
+						<li> OVP/OCP pour éviter les surtensions et surintensités</li>
+						<li> Rendement > 84% à puissance maximale</li>
+						<li>Température de fonctionnement : +5 à +40°C </li>
+						<li>Fonction en U et I (arbitraire, carré, rampe montante et descendante, temps de montée et descente) </li>
+						<li>Drivers et exécutable LabVIEW fournis </li>
+						<li>Consommation 770W maxi </li>
+					</ul>
+				</td>
+				</td>
+				<td>
+					<ul>
+						<li> Alimentation 1 voie </li>
+						<li> Puissance 96W max </li>
+						<li> Tension 0-32V / courant 0-6A </li>
+						<li> Résolutions 10mV et 2mA </li>
+						<li> Communication USB </li>
+						<li> Protection contre les courts-circuits, les échauffements excessifs et les surintensités à l’entrée du secteur </li>
+						<li> OVP/OCP pour éviter les surtensions et surintensités </li>
+						<li> Rendement > 78% à puissance maximale </li>
+						<li> Fonction en U et I (arbitraire, carré, rampe montante et descendante périodique, temps de montée/descente monocoup) </li>
+						<li> Drivers et exécutable LabVIEW fournis </li>
+						<li> Température de fonctionnement : +5 à +40°C </li>
+						<li> Consommation 126W maxi </li>
+						<li> Drivers et exécutable LabVIEW fournis </li>
 					</ul>
 				</td>			
 			</tr>
