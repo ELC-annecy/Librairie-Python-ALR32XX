@@ -14,10 +14,16 @@
     *                                                                      *
     *  Version     Date       Auteur         Objet                         *
     *  ------------------------------------------------------------------- *
-    *    1.0    16/09/2021    Y.M     Édition originale                    *
+    *    1.0    20/09/2021    Y.M     Édition originale                    *
     ************************************************************************
 """
 
+#Importation du module
+import time
+import sys
+
+#Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
+sys.path.insert(0, "C:\\Users\\stagiaire2\\Desktop\\GitHub\\Librairie-Python-ALR32XX") #Lieu où se trouve la libririre ALR32XX
 
 
 #Importation des bibliothèques
@@ -59,5 +65,9 @@ time.sleep(1)
 val4=X.Read_state_ALR ('MODE')
 if '2' in val4 :
     print("On est bien en mode parallèle")
+    time.sleep(1)
 else:
-    print("On est dans unautre mode")
+    print("On est dans un autre mode")
+    time.sleep(1)
+X.ALR('NORMAL')
+
