@@ -47,14 +47,16 @@ X.Ecrire_tension(10.5, 2)
 time.sleep(1)
 X.Ecrire_tension(3.4, 3)
 time.sleep(1)
+print(" ")
 
 #Lecture des valeurs de tension
 val1=X.Mesure_tension(1)
-print(val1)
+print("U1="+str(val1))
 time.sleep(1)
 val2=X.Mesure_tension(2)
-print(val2)
+print("U2="+str(val2))
 time.sleep(1)
+print(" ")
 
 #Utilisaation d'autres fonctions de la librairie
 val3=X.IDN()
@@ -62,6 +64,7 @@ time.sleep(1)
 print(val3)
 X.ALR('PARALLELE')
 time.sleep(1)
+print(" ")
 val4=X.Read_state_ALR ('MODE')
 if '2' in val4 :
     print("On est bien en mode parallèle")
