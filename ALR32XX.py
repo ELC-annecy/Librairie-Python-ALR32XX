@@ -125,14 +125,14 @@ class ALR32XX:
         command=c_command
         if alim.isOpen()==True:
             alim.write(command)
-            time.sleep(1)
+            #time.sleep(1)
         else:
             alim.close()
             alim.open()
             alim.write(command)
-            time.sleep(1)
+            #time.sleep(1)
         _bytes_lus=alim.read_until(b'\r')
-        time.sleep(1)
+        #time.sleep(1)
         return (str(_bytes_lus.decode('ASCII')))
 
 
@@ -475,7 +475,7 @@ class ALR32XX:
 
 
     def Ecrire_tension(self, c_valeur=0, c_voie=1): #Permet d’envoyer une valeur de tension à l’alimentation
-        temp=int(c_valeur)*1000
+        temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
         if self.nom=='ALR3203' or self.nom=='ALR3220':
