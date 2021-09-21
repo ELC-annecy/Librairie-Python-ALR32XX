@@ -48,16 +48,33 @@ from ALR32XX import*
 #Définition des varibales
 alim=ALR32XX('ALR3203')
 X=[ ]
-Y=[ ]
+Y1=[ ]
+Y2=[ ]
 
 print(" ")
-print("Envoie des valeurs : ")
-while 1:
-    for i in range (0, 360):
-        temp=math.sin(i*3.14/180)
-        temp_=(temp*16)+16
-        alim.Ecrire_tension(temp_)
-        print(temp)
+print("Envoie des valeurs ... ")
+for i in range (0,  360):
+    X.append(i)
+    #On envoie le sinus
+    temp=math.sin(i*3.14/180)
+    temp_=(temp*16)+16
+    alim.Ecrire_tension(temp_)
+    Y1.append(temp)
+    #On récupère le courant
+    valeur=alim.Mesure_courant()
+    Y2.append(valeur)
+
+#On affiche le signal courant et la tension
+plt.plot(X, Y1,"b:o", label="tension U")
+plt.plot(X, Y2, label="courant I")
+plt.title("Fonction sinus")
+plt.xlabel("t(s)")
+plt.ylabel("f(t)")
+plt.legend()
+plt.show()
+        
+
+        
     
 
 

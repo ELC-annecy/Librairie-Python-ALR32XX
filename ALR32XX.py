@@ -508,7 +508,7 @@ class ALR32XX:
 
 
     def Ecrire_courant(self, c_valeur=0, c_voie=1): #Permet d’envoyer une valeur de courant à l’alimentation
-        temp=int(c_valeur)*1000
+        temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
         if self.nom=='ALR3203' or self.nom=='ALR3220':
@@ -537,7 +537,7 @@ class ALR32XX:
     
 
     def OVP(self, c_valeur=0, c_voie=1): #Permet de régler la limitation de tension sur une voie de l'alimentation
-        temp=int(c_valeur)*1000
+        temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
         while valeur >=0 and valeur<=32200:
@@ -571,7 +571,7 @@ class ALR32XX:
                         
 
     def OCP(self, c_valeur=0, c_voie=1): #Permet de régler la limitation de courant sur une voie de l'alimentation
-       temp=int(c_valeur)*1000
+       temp=float(c_valeur)*1000
        voie=c_voie
        valeur=temp
        while valeur >=0 and valeur<=6100:
