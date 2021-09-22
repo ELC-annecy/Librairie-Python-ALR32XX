@@ -120,7 +120,7 @@ finally:
             print("Pas de changement !!!")
             print(" ")
 
-        """
+        
         #Récupérer les informations de la base de données
         try:
             conn=sqlite3.connect('MyBase.db')
@@ -137,4 +137,4 @@ finally:
 
         except sqlite3.Error as error:
             print("Echec : ", error) 
-        """
+        
