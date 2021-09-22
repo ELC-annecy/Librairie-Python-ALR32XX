@@ -21,52 +21,120 @@
 #importation des bibliothèques
 import sqlite3
 import sys
+import math
+import numpy as np 
+import matplotlib.pyplot as plt
+
 
 #Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
 sys.path.insert(0, "C:\\Users\\stagiaire2\\Desktop\\GitHub\\Librairie-Python-ALR32XX") #Lieu où se trouve la libririre ALR32XX
 
+
 #Importation de la bibliothèque ALR32XX
 from ALR32XX import*
 
-#Création de la base de données
+
+#Liste des variables
+alim=ALR32XX('ALR3203')
 i=1
+j=1
+tension=0
+temps=0
+
+
+#Création de la base de données
 try:
+    print(" ")
     conn = sqlite3.connect('MyBase.db')
     cur = conn.cursor()
     create_table = "CREATE TABLE Tableaux (id integer primary key autoincrement, valeur_tension float, valeur_temps float)"
-    print("Connected to MyBase...")
+    print("Création de MyBase.db ... ")
     print(" ")
     cur.execute(create_table)
     conn.commit()
-    print("MyBase table created...")
+    print("Yes MyBase.db est créée :D ")
     print(" ")
     cur.close()
         
-except sqlite3.Error as error:
-    print("Error while connecting to MyBase: ", error)
+
+except sqlite3.OperationalError:
+    print("Oups !!! MyBase.db existe déjà :') ")
     print(" ")
     
+
 finally:
     if  conn:
-        #Remplir la base de donnée
-        nbre_valeur=int(input("Choisir le nombre de valeur que vous voulez insérer dans MyBase: "))
+        #supprimer tous les éléments de la base de donnée
+        supp="DELETE FROM Tableaux"
+        cur=conn.cursor()
+        cur.execute(supp)
+        conn.commit()
+
+
+        #Ecrire dans la base de donnée
+        nbre_valeur=int(input("Choisir le nombre de valeur que vous voulez insérer dans MyBase= "))
         print(" ")
         while i <= nbre_valeur:
-            valeur_tension=input("Valeur de tension: ")
-            valeur_temps=input("Temps nécessaire: ")
+            valeur_tension=input("Valeur de tension= ")
+            valeur_temps=input("Temps d'utilisation= ")
             try:
                 conn=sqlite3.connect('MyBase.db')
                 cur=conn.cursor()
-                insert_into_table="insert into Tableaux( valeur_tension, valeur_temps) values (?, ?)"
+                insert_into_Tableaux="INSERT INTO Tableaux (valeur_tension, valeur_temps) values (?, ?)"
                 data_tuple=(valeur_tension, valeur_temps)
-                cur.execute(insert_into_table, data_tuple)
+                cur.execute(insert_into_Tableaux, data_tuple)
                 conn.commit()
-                print("O.K :D")
+                print("O.K :)")
                 print(" ")
                 cur.close()
+
             except sqlite3.Error as error:
-                print("Failed to insert Python variable into MyBase table", error)
+                print(" Failed :(", error)
             i=i+1
 
-        #Ecrire dans la base de donnée
 
+        #Mettre à jour les informations de la base de données
+        choix=input("Voulez-vous mettre à jour les valeur_temps et valeur_tension ? OUI/NON : ")
+        print(" ")
+        if choix=='OUI':
+            nbre_chgment=int(input("Combien de changement voulez vous faire dans MyBase= "))
+            print(" ")
+            while j <= nbre_chgment:
+                chgment_indice=input("Choix de l'indice= ")
+                chgment_tension=input("New valeur de tension= ")
+                chgment_temps=input("New temps d'utilisation= ")
+                try:
+                    conn=sqlite3.connect('MyBase.db')
+                    cur=conn.cursor()
+                    changement="UPDATE Tableaux SET valeur_tension= ?, valeur_temps=? WHERE ID=? "
+                    modif=(chgment_tension, chgment_temps, chgment_indice)
+                    cur.execute(changement, modif)
+                    conn.commit()
+                    print(" ")
+                except sqlite3.Error as error:
+                    print(" Echec :", error)
+                    print(" ")
+                j=j+1
+
+        elif choix=='NON':
+            print("Pas de changement !!!")
+            print(" ")
+
+        """
+        #Récupérer les informations de la base de données
+        try:
+            conn=sqlite3.connect('MyBase.db')
+            cur=conn.cursor()
+            recovers_from_Tableaux="SELECT * FROM Tableaux"
+            cur.execute(recovers_from_Tableaux)
+            lignes=cur.fetchall()
+            for ligne in lignes:
+                tension=ligne[1]
+                temps=ligne[2]
+                #print("tension=", tension, "et temps=", temps)
+                alim.Ecrire_tension(tension)
+                time.sleep(temps)
+
+        except sqlite3.Error as error:
+            print("Echec : ", error) 
+        """
