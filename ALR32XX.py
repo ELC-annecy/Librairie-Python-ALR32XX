@@ -36,6 +36,8 @@ class ALR32XX:
 
     global alim
     alim=serial.Serial()
+    print("Connexion à l'alimentation ...")
+    print(" ")
 
     
     def __init__(self, c_nom=' '): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
