@@ -21,9 +21,6 @@
 #importation des bibliothèques
 import sqlite3
 import sys
-import math
-import numpy as np 
-import matplotlib.pyplot as plt
 
 
 #Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
@@ -55,13 +52,11 @@ try:
     print("Yes MyBase.db est créée :D ")
     print(" ")
     cur.close()
-        
-
+    
 except sqlite3.OperationalError:
     print("Oups !!! MyBase.db existe déjà :') ")
     print(" ")
     
-
 finally:
     if  conn:
         #supprimer tous les éléments de la base de donnée
@@ -69,7 +64,6 @@ finally:
         cur=conn.cursor()
         cur.execute(supp)
         conn.commit()
-
 
         #Ecrire dans la base de donnée
         nbre_valeur=int(input("Choisir le nombre de valeur que vous voulez insérer dans MyBase= "))
@@ -87,11 +81,10 @@ finally:
                 print("O.K :)")
                 print(" ")
                 cur.close()
-
+                
             except sqlite3.Error as error:
                 print(" Failed :(", error)
             i=i+1
-
 
         #Mettre à jour les informations de la base de données
         choix=input("Voulez-vous mettre à jour les valeur_temps et valeur_tension ? OUI/NON : ")
@@ -101,8 +94,8 @@ finally:
             print(" ")
             while j <= nbre_chgment:
                 chgment_indice=input("Choix de l'indice= ")
-                chgment_tension=input("New valeur de tension= ")
-                chgment_temps=input("New temps d'utilisation= ")
+                chgment_tension=input("Nouvelle valeur de tension= ")
+                chgment_temps=input("Nouveau temps d'utilisation= ")
                 try:
                     conn=sqlite3.connect('MyBase.db')
                     cur=conn.cursor()
@@ -111,16 +104,16 @@ finally:
                     cur.execute(changement, modif)
                     conn.commit()
                     print(" ")
+                    
                 except sqlite3.Error as error:
                     print(" Echec :", error)
                     print(" ")
                 j=j+1
-
+                
         elif choix=='NON':
             print("Pas de changement !!!")
             print(" ")
 
-        
         #Récupérer les informations de la base de données
         try:
             conn=sqlite3.connect('MyBase.db')
@@ -128,12 +121,13 @@ finally:
             recovers_from_Tableaux="SELECT * FROM Tableaux"
             cur.execute(recovers_from_Tableaux)
             lignes=cur.fetchall()
-            for ligne in lignes:
-                tension=ligne[1]
-                temps=ligne[2]
-                #print("tension=", tension, "et temps=", temps)
-                alim.Ecrire_tension(tension)
-                time.sleep(temps)
+            while 1:
+                for ligne in lignes:
+                    tension=ligne[1]
+                    temps=ligne[2]
+                    #print("tension=", tension, "et temps=", temps)
+                    alim.Ecrire_tension(tension)
+                    time.sleep(temps)
 
         except sqlite3.Error as error:
             print("Echec : ", error) 
