@@ -133,8 +133,8 @@ descendante, temps de montée et descente)</li>
 		<p> <h3> <span class ="colorpink"> Exemples </h3></p>
 		<p> Voici quelques exemples d'utlisation de la librairie </p>
 		<p> <strong> <a href="https://github.com/ELC-annecy/Librairie-Python-ALR32XX/blob/main/Exemples/Exemple_1.py" title="Exemple 1"> Exemple 1 </a> </strong></p>
-		<p> <strong> <a href="https://github.com/ELC-annecy/Librairie-Python-ALR32XX/blob/main/Exemples/Exemple_1.py" title="Exemple 2"> Exemple 2 </a> </strong></p>
-		<p> <strong> <a href="https://github.com/ELC-annecy/Librairie-Python-ALR32XX/blob/main/Exemples/Exemple_1.py" title="Exemple 3"> Exemple 3 </a> </strong></p>
+		<p> <strong> <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX/blob/main/Exemples/Exemple_2.py" title="Exemple 2"> Exemple 2 </a> </strong></p>
+		<p> <strong> <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX/blob/main/Exemples/Exemple_3.py" title="Exemple 3"> Exemple 3 </a> </strong></p>
 		<p> ... </p>
 	</div>
 	<div>
