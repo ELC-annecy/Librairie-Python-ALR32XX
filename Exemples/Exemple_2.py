@@ -73,15 +73,3 @@ plt.ylabel("f(t)")
 plt.legend()
 plt.show()
         
-
-        
-    
-
-
-
-
-
-
-
-
-

@@ -36,11 +36,11 @@ class ALR32XX:
 
     global alim
     alim=serial.Serial()
-    print("Connexion à l'alimentation ...")
-    print(" ")
-
+    
     
     def __init__(self, c_nom=' '): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
+        print("Connexion à l'alimentation ...")
+        print(" ")
         self.nom=c_nom
         self.port=self.__Connect_auto_toPort(self.nom)
         try :
@@ -118,7 +118,9 @@ class ALR32XX:
                         chaine=self.__write_command_toByte (parametre='IDN', commande='RD', valeur=0)
                         reponse=self.__send(chaine)
                         if name in reponse:
-                                    return (str(p.device))        
+                                    return (str(p.device))
+                        else:
+                            alim.close()
                 except :
                     alim.close()
                     
