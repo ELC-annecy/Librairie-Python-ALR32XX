@@ -38,7 +38,7 @@ class ALR32XX:
     alim=serial.Serial()
     
     
-    def __init__(self, c_nom=' '): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
+    def __init__(self, c_nom='ALR3203'): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
         print("Connexion à l'alimentation ...")
         print(" ")
         self.nom=c_nom
