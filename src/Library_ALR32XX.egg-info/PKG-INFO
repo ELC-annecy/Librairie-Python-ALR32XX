@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: Library-ALR32XX
-Version: 0.0.2
+Version: 0.0.1
 Summary: Ce module permet de commander via liaison série les alimentations programmables ALR32XX de ELC
 Home-page: https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX
 Author: elc-construction-electronique
