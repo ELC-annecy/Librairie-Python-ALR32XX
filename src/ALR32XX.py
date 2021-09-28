@@ -38,11 +38,12 @@ class ALR32XX:
     alim=serial.Serial()
     
     
-    def __init__(self, c_nom='ALR3203'): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
+    def __init__(self, c_nom=' '): #Initialise la classe ALR32XX en choissant le nom de l'appareil.
         print("Connexion à l'alimentation ...")
         print(" ")
         self.nom=c_nom
-        self.port=self.__Connect_auto_toPort(self.nom)
+        self.port=self. __Connect_auto_toPort(self.nom)
+        #self.port=self. __Connect_manuel_toPort()
         try :
             print("Port="+self.port)
             print("Nom="+ self.nom)
@@ -107,36 +108,57 @@ class ALR32XX:
         return (reponse)
 
 
-    def __Connect_auto_toPort(self, c_name=' '):#Cette fonction permet de se connecter automatiquement au port de l'alimentation
+    def __Connect_auto_toPort(self, c_name=' '):#Cette fonction permet de se connecter automatiquement au port de l'alimentation lors de la phase d'initialisation de la bibliothèque
         name=c_name
         ports=serial.tools.list_ports.comports(include_links=False)
         if len(ports)!=0:
             for p in ports:
                 try:
-                    alim.__init__(str(p.device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(3))
+                    alim.__init__(str(p.device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
                     if alim.isOpen()==True:
                         chaine=self.__write_command_toByte (parametre='IDN', commande='RD', valeur=0)
-                        reponse=self.__send(chaine)
+                        alim.write(chaine)
+                        reponse=str(alim.read_until(b'\r'))
                         if name in reponse:
-                                    return (str(p.device))
-                        else:
+                            return (str(p.device))
+                        else :
                             alim.close()
                 except :
                     alim.close()
+
+
+    def __Connect_manuel_toPort(self): #Cette fonction permet de se connecter manuellement au port de l'alimentation lors de la phase d'initialisation de la bibliothèque
+        # Connexion Manuelle
+        ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
+        ligne=1
+        if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
+            for p in ports:
+                print(str(ligne)+" : " + str(p))
+                ligne=ligne+1
+                print (" ")
+                _portChoisi=input("Chosir parmi les différents ports trouvés : ")
+                #On établie la communication
+                try:
+                    alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
+                    if alim.isOpen()==True:
+                        return (str(p.device))
+                except IOError: #Si le port est déja ouvert, alors ferme puis ouvre le
+                    alim.close()
+                    alim.open()
+                    return (str(p.device))
                     
 
     def __send (self, c_command): #Cette fonction établie la connexion avce le PC et l'ALR32XX puis envoie les commandes 
         command=c_command
         if alim.isOpen()==True:
             alim.write(command)
-            #time.sleep(1)
         else:
             alim.close()
             alim.open()
             alim.write(command)
-            #time.sleep(1)
         _bytes_lus=alim.read_until(b'\r')
-        #time.sleep(1)
+        time.sleep(0.005)
+        alim.close()
         return (str(_bytes_lus.decode('ASCII')))
 
 
@@ -149,7 +171,7 @@ class ALR32XX:
             print ("Aucun port actif n'a été trouvé")
 
 
-    def Choix_port (self): #Cette fonction permet de se connecter manuellement au port de l'alimentation
+    def Choix_port (self): #Cette fonction permet de se connecter manuellement au port de l'alimentation et retourn le port choisi
         # Connexion Manuelle
         ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
         ligne=1
@@ -161,7 +183,7 @@ class ALR32XX:
             _portChoisi=input("Chosir parmi les différents ports trouvés : ")
             #On établie la communication
             try:
-                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE)
+                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
                 if alim.isOpen()==True:
                     print ("Connexion O.K")
                     portChoisi=ports[int(_portChoisi)-1].device
@@ -656,5 +678,6 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
 
-#Main
+
+#main programme
 
