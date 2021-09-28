@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ALR32XX",
+    name="Library_ALR32XX",
     version="0.0.1",
     author="elc-construction-electronique",
     author_email="be@elc.fr",
