@@ -50,6 +50,7 @@ class ALR32XX:
             print("Connexion=OK") 
         except:
             print("ERROR: Alimentation pas trouvée")
+        
      
             
     def __param (self, c_parametre=' ', c_valeur=0): #Permet de chosir parmi les différents paramètres possibles
@@ -130,22 +131,22 @@ class ALR32XX:
     def __Connect_manuel_toPort(self): #Cette fonction permet de se connecter manuellement au port de l'alimentation lors de la phase d'initialisation de la bibliothèque
         # Connexion Manuelle
         ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
-        ligne=1
+        ligne_=1
         if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
-            for p in ports:
-                print(str(ligne)+" : " + str(p))
-                ligne=ligne+1
-                print (" ")
-                _portChoisi=input("Chosir parmi les différents ports trouvés : ")
-                #On établie la communication
-                try:
-                    alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
-                    if alim.isOpen()==True:
-                        return (str(p.device))
-                except IOError: #Si le port est déja ouvert, alors ferme puis ouvre le
-                    alim.close()
-                    alim.open()
-                    return (str(p.device))
+            for q in ports:
+                print(str(ligne_)+" : " + str(q))
+                ligne_=ligne_+1
+            print (" ")
+            _portChoisi=input("Chosir parmi les différents ports trouvés : ")
+            #On établie la communication
+            try:
+                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
+                if alim.isOpen()==True:
+                    return (str(q.device))
+            except IOError: #Si le port est déja ouvert, alors ferme puis ouvre le
+                alim.close()
+                alim.open()
+                return (str(q.device))
                     
 
     def __send (self, c_command): #Cette fonction établie la connexion avce le PC et l'ALR32XX puis envoie les commandes 
@@ -157,7 +158,6 @@ class ALR32XX:
             alim.open()
             alim.write(command)
         _bytes_lus=alim.read_until(b'\r')
-        time.sleep(0.005)
         alim.close()
         return (str(_bytes_lus.decode('ASCII')))
 
@@ -680,4 +680,3 @@ class ALR32XX:
 
 
 #main programme
-
