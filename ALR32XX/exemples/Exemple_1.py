@@ -14,23 +14,17 @@
     *                                                                      *
     *  Version     Date       Auteur         Objet                         *
     *  ------------------------------------------------------------------- *
-    *    1.0    20/09/2021    Y.M     Édition originale                    *
+    *    1.0    29/09/2021    Y.M     Édition originale                    *
     ************************************************************************
 """
 
-#Importation du module
+#Importation des bibliothèques
+import ALR32XX.Library_ALR32XX as ALR
 import time
 import sys
 
-#Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
-sys.path.insert(0, "C:\\Users\\stagiaire2\\Desktop\\GitHub\\Librairie-Python-ALR32XX") #Lieu où se trouve la libririre ALR32XX
-
-
-#Importation des bibliothèques
-from ALR32XX import*
-
 #Importation de la classe plus choix de l'appareil
-X=ALR32XX('ALR3206T')
+X=ALR.ALR32XX('ALR3206T')
 
 #Réglage des OVP
 X.OVP(32, 1)

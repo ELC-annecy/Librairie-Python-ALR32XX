@@ -21,18 +21,11 @@
 #importation des bibliothèques
 import sqlite3
 import sys
-
-
-#Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
-sys.path.insert(0, "C:\\Users\\stagiaire2\\Desktop\\GitHub\\Librairie-Python-ALR32XX") #Lieu où se trouve la libririre ALR32XX
-
-
-#Importation de la bibliothèque ALR32XX
-from ALR32XX import*
-
+import time
+import ALR32XX.Library_ALR32XX as ALR
 
 #Liste des variables
-alim=ALR32XX('ALR3203')
+alim=ALR.ALR32XX('ALR3203')
 i=1
 j=1
 tension=0

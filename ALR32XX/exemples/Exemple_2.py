@@ -36,16 +36,11 @@ import time
 import sys
 import math
 import matplotlib.pyplot as plt
+import ALR32XX.Library_ALR32XX as ALR
 
-
-#Commande pour permettre à python de lire le contenu de la libraiire ALR32XX.
-sys.path.insert(0, "C:\\Users\\stagiaire2\\Desktop\\GitHub\\Librairie-Python-ALR32XX") #Lieu où se trouve la libririre ALR32XX
-
-#Importation de la bibliothèque ALR32XX
-from ALR32XX import*
 
 #Définition des varibales
-alim=ALR32XX('ALR3203')
+alim=ALR.ALR32XX('ALR3203')
 X=[ ]
 Y1=[ ]
 Y2=[ ]
