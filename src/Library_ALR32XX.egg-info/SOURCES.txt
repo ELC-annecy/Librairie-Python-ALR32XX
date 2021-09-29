@@ -1,8 +1,0 @@
-LICENCE.txt
-README.md
-pyproject.toml
-setup.py
-src/Library_ALR32XX.egg-info/PKG-INFO
-src/Library_ALR32XX.egg-info/SOURCES.txt
-src/Library_ALR32XX.egg-info/dependency_links.txt
-src/Library_ALR32XX.egg-info/top_level.txt
