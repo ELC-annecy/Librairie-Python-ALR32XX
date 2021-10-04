@@ -2,11 +2,31 @@
 
 Documentation complète de la librairie : https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/
 
+<p div="Description"> 
+Cette librairie en python a été réalisé pour permettre aux utilisateurs des alimentations ELC de piloter à distance <strong> les alimentations programmables ALR3203, ALR3220, ALR3206D et ALR3206T </strong>. Pourquoi avoir choisi python ? Tout simplement parce qu'il s'agit d'un langage open source et du langage le plus apprécié des developpeurs. Python est disponible et téléchargeable <strong> <a href="https://www.python.org/downloads/" title="Lien vers le téléchargement de Python"> ICI </a> </strong>. 
+</p>
 
 
 
+Formatage de votre README
+Les fichiers README suivent généralement un format afin d'orienter immédiatement les développeurs vers les aspects les plus importants de votre projet.
 
+Nom du projet : le nom de votre projet est la première chose que les gens verront en faisant défiler le fichier README, et il est inclus lors de la création de votre fichier README.
 
+Description : Une description de votre projet suit. Une bonne description est claire, courte et précise. Décrivez l'importance de votre projet et ce qu'il fait.
+
+Table des matières : En option, incluez une table des matières afin de permettre aux autres personnes de naviguer rapidement dans les README particulièrement longs ou détaillés.
+
+Installation : L'installation est la section suivante d'un README efficace. Indiquez aux autres utilisateurs comment installer votre projet localement. En option, incluez un gif pour rendre le processus encore plus clair pour les autres personnes.
+
+Utilisation : La section suivante est l'utilisation, dans laquelle vous indiquez aux autres personnes comment utiliser votre projet après l'avoir installé. C'est également un bon endroit pour inclure des captures d'écran de votre projet en action.
+
+Contribution : Les projets plus importants ont souvent des sections sur la contribution à leur projet, dans lesquelles les instructions de contribution sont décrites. Parfois, il s'agit d'un fichier séparé. Si vous avez des préférences spécifiques en matière de contribution, expliquez-les afin que les autres développeurs sachent comment contribuer au mieux à votre travail. Pour en savoir plus sur la façon d'aider les autres à contribuer, consultez le guide sur la définition de directives pour les contributeurs de référentiel.
+
+Crédits : Incluez une section pour les crédits afin de mettre en évidence et de lier les auteurs de votre projet.
+
+Licence : Enfin, incluez une section pour la licence de votre projet. Pour plus d'informations sur le choix d'une licence, consultez le guide de licence de GitHub !
+Votre fichier README ne doit contenir que les informations nécessaires aux développeurs pour commencer à utiliser votre projet et à y contribuer. Une documentation plus longue est mieux adaptée aux wikis, comme indiqué ci-dessous.
 
 
 
