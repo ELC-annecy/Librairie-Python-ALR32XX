@@ -2,13 +2,14 @@
 
 Documentation complète de la librairie : https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/
 
+
 <p div="Description"> 
 Librairie <a href="https://www.python.org/downloads/" title="Lien d téléchargement Python"> Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
-	
-	Cette librairie en python a été réalisé pour permettre aux utilisateurs des alimentations ELC de piloter à distance <strong> les alimentations programmables ALR3203, ALR3220, ALR3206D et ALR3206T </strong>. Pourquoi avoir choisi python ? Tout simplement parce qu'il s'agit d'un langage open source et du langage le plus apprécié des developpeurs. Python est disponible et téléchargeable <strong> <a href="https://www.python.org/downloads/" title="Lien vers le téléchargement de Python"> ICI </a> </strong>. 
 </p>
 
 
+
+<h2>Description</h2>
 
 Formatage de votre README
 Les fichiers README suivent généralement un format afin d'orienter immédiatement les développeurs vers les aspects les plus importants de votre projet.
