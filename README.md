@@ -1,6 +1,6 @@
 # Librairie-Python-ALR32XX
 
-Documentation complète de la librairie : <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/>https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/</a>
+Documentation complète de la librairie : https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/
 
 
 
