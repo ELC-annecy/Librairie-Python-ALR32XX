@@ -9,7 +9,17 @@ Librairie <a href="https://www.python.org/downloads/" title="Lien d télécharge
 
 
 
-<h2>Description</h2>
+<h2>Installation du module</h2>
+
+
+
+
+
+
+
+
+
+
 
 Formatage de votre README
 Les fichiers README suivent généralement un format afin d'orienter immédiatement les développeurs vers les aspects les plus importants de votre projet.
