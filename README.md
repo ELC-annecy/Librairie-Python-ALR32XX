@@ -1,4 +1,27 @@
 # Librairie-Python-ALR32XX
+
+Documentation complète de la librairie : <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/>https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
 	<div>
 		<p> <h3> <span class ="colored"> Texte introductif </h3></p>
