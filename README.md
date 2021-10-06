@@ -11,8 +11,7 @@ Librairie <a href="https://www.python.org/downloads/" title="Lien d télécharge
 
 <h2>Installation du module</h2>
 
-
-
+Le module ALR32XX necessite d'avoir installé Python et la librairie PySerial : <a href="https://pythonhosted.org/pyserial/pyserial.html">pip install pyserial</>
 
 
 
