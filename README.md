@@ -23,27 +23,18 @@ L'installation de la librairie ALR32XX se fait alors de deux façons :
 </ul> 
 	
 <h2>Utilisation du module</h2>
+<p>
+Une fois l'installation terminée vous pouvez acceder à la bibliothèque par "from ALR32XX import *". </br>
+Reliez l'alimentation à l'ordinateur par USB, RS232 ou RS485. Vous pouvez verifier la connexion dans le gestionnaire de périphérique et sur l'ecran de l'alimentation :
+<img src=Documentation/Images/gest_periph.PNG>
+Le programme fonctionne sous la forme d'une classe, il faut declarer un objet qui correspondra à l'alimentation. Par exemple pour une ALR3203, la declaration se fera par "nom=ALR32XX('ALR3203')". Le programme tente alors d'établir automatiquement une communication avec l'alimentation et renvoie Port=COM3; Nom=ALR3203; Connexion=OK. 
+Si la tentative échoue, il vous sera demandé de connecter l'alimentation manuellement par la fonction Choix_port(). Cette fonction va lister vos ports actifs et vous demandera d'entrer le numéro de celui qu'il faut connecter :
+<img src=Documentation/Images/connect_manuel.PNG>
+</br>
+Une fois la connexion réussie, vous pouvez utiliser la librairie. Par exemple X.Mesure_tension() pour mesurer la tension de votre ALR3203. Une liste des fonctions disponibles est donnée dans la documentation et sur le  <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie">Gitbook</a>
+</p>
 
-Il existe deux méthodes 
 
-
-
-
-
-Formatage de votre README
-Les fichiers README suivent généralement un format afin d'orienter immédiatement les développeurs vers les aspects les plus importants de votre projet.
-
-Nom du projet : le nom de votre projet est la première chose que les gens verront en faisant défiler le fichier README, et il est inclus lors de la création de votre fichier README.
-
-Description : Une description de votre projet suit. Une bonne description est claire, courte et précise. Décrivez l'importance de votre projet et ce qu'il fait.
-
-Table des matières : En option, incluez une table des matières afin de permettre aux autres personnes de naviguer rapidement dans les README particulièrement longs ou détaillés.
-
-Installation : L'installation est la section suivante d'un README efficace. Indiquez aux autres utilisateurs comment installer votre projet localement. En option, incluez un gif pour rendre le processus encore plus clair pour les autres personnes.
-
-Utilisation : La section suivante est l'utilisation, dans laquelle vous indiquez aux autres personnes comment utiliser votre projet après l'avoir installé. C'est également un bon endroit pour inclure des captures d'écran de votre projet en action.
-
-Contribution : Les projets plus importants ont souvent des sections sur la contribution à leur projet, dans lesquelles les instructions de contribution sont décrites. Parfois, il s'agit d'un fichier séparé. Si vous avez des préférences spécifiques en matière de contribution, expliquez-les afin que les autres développeurs sachent comment contribuer au mieux à votre travail. Pour en savoir plus sur la façon d'aider les autres à contribuer, consultez le guide sur la définition de directives pour les contributeurs de référentiel.
 
 Crédits : Incluez une section pour les crédits afin de mettre en évidence et de lier les auteurs de votre projet.
 
