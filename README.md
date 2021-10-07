@@ -41,4 +41,4 @@ En cas de problème lors de l'utilisation de la librairie, veuillez nous contact
 </br>
 </br>
 
-<img src="ALR32XX.png" alt="Gamme d'alimentations programmables" width="150" height="200">
+<img src="Documentation/Images/ALR32XX.png" alt="Gamme d'alimentations programmables">
