@@ -18,9 +18,10 @@ L'installation de la librairie ALR32XX se fait alors de deux façons :
 	<li>Utilisation du code dans un projet : 
 		Telechargez le .zip via le <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX">repository github</a>. Dans ce dossier vous trouverez le code source ALR32XX.py, un dossier avec des exemples d'utilisation et un dossier avec les documentations de la librairie et des alimentations. 
 	<li>Téléchargement de la librairie via Pip :
-		Notre librairie ALR32XX est accessible via <a href="https://pypi.org/project/ALR32XX/">Pipy</a>, la rendant téléchargeable par la commande "pip install ALR32XX". Vous pouvez trouver des renseignements et la version de la librairie par la commande "pip show ALR32XX" et, si besoin, la mettre à jour par "pip install ALR32XX --upgrade". 
+		Notre librairie ALR32XX est accessible via <a href="https://pypi.org/project/ALR32XX/">Pipy</a>, la rendant téléchargeable par la commande "pip install ALR32XX". <\br>Vous pouvez trouver des renseignements et la version de la librairie par la commande "pip show ALR32XX" et, si besoin, la mettre à jour par "pip install ALR32XX --upgrade". 
 		<img src="Documentation/Images/install_cmd.PNG">
-
+<ul> 
+	
 <h2>Utilisation du module</h2>
 
 Il existe deux méthodes 
