@@ -20,7 +20,7 @@ L'installation de la librairie ALR32XX se fait alors de deux façons :
 	<li>Téléchargement de la librairie via Pip :
 		Notre librairie ALR32XX est accessible via <a href="https://pypi.org/project/ALR32XX/">Pipy</a>, la rendant téléchargeable par la commande "pip install ALR32XX". </br>Vous pouvez trouver des renseignements et la version de la librairie par la commande "pip show ALR32XX" et, si besoin, la mettre à jour par "pip install ALR32XX --upgrade". 
 		<img src="Documentation/Images/install_cmd.PNG">
-<ul> 
+</ul> 
 	
 <h2>Utilisation du module</h2>
 
