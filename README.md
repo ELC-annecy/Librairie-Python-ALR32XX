@@ -37,15 +37,11 @@ Une fois la connexion réussie, vous pouvez utiliser la librairie. Par exemple X
 
 
 <h1>Contact</h1>
-En cas de problème lors de l'utilisation de la librairie, veuillez nous contacter à <a href="mailto: commercial@elc.fr">commercial@elc.fr</a>
-Crédits : Incluez une section pour les crédits afin de mettre en évidence et de lier les auteurs de votre projet.
+En cas de problème lors de l'utilisation de la librairie, veuillez nous contacter à <a href="mailto: commercial@elc.fr">commercial@elc.fr</a> ou au +33 4 50 57 30 46.  
+</br>
+</br>
 
-Licence : Enfin, incluez une section pour la licence de votre projet. Pour plus d'informations sur le choix d'une licence, consultez le guide de licence de GitHub !
-Votre fichier README ne doit contenir que les informations nécessaires aux développeurs pour commencer à utiliser votre projet et à y contribuer. Une documentation plus longue est mieux adaptée aux wikis, comme indiqué ci-dessous.
-
-
-
-
+<img src="ALR32XX.png" alt="Gamme d'alimentations programmables" width="150" height="200">
 
 
 
