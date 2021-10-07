@@ -36,7 +36,7 @@ Une fois la connexion réussie, vous pouvez utiliser la librairie. Par exemple X
 </p>
 
 
-<h1>Contact</h1>
+<h2>Contact</h2>
 En cas de problème lors de l'utilisation de la librairie, veuillez nous contacter à <a href="mailto: commercial@elc.fr">commercial@elc.fr</a> ou au +33 4 50 57 30 46.  
 </br>
 </br>
