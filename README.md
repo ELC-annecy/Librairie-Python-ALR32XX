@@ -4,14 +4,14 @@ Documentation complète de la librairie : https://elc-construction-electronique.
 
 
 <p div="Description"> 
-Librairie <a href="https://www.python.org/downloads/" title="Lien d téléchargement Python" target="_blank"> Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
+Librairie <a href="https://www.python.org/downloads/" target="_blank" title="Lien d téléchargement Python" > Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
 </p>
 
 
 
 <h2>Installation du module</h2>
 
-Le module ALR32XX necessite d'avoir installé Python et la librairie PySerial : <a href="https://pythonhosted.org/pyserial/pyserial.html">pip install pyserial</a>. La procédure d'installation est detaillée dans le gitbook à la page <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie">Installation de la librairie</a>.
+Le module ALR32XX necessite d'avoir installé Python et la librairie PySerial : <a href="https://pythonhosted.org/pyserial/pyserial.html" target="_blank">pip install pyserial</a>. La procédure d'installation est detaillée dans le gitbook à la page <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie" target="_blank">Installation de la librairie</a>.
 
 L'installation de la librairie ALR32XX se fait alors de deux façons : 
 <ul>
