@@ -4,7 +4,7 @@ Documentation complète de la librairie : https://elc-construction-electronique.
 
 
 <p div="Description"> 
-Librairie <a href="https://www.python.org/downloads/" title="Lien d téléchargement Python"> Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
+Librairie <a href="https://www.python.org/downloads/" title="Lien d téléchargement Python" target="_blank"> Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
 </p>
 
 
