@@ -76,7 +76,7 @@ Complete documentation of the library : https://elc-construction-electronique.gi
 
 <h2>Module installation</h2>
 
-The ALR32XX module requires Python and the PySerial library to be installed: <a href="https://pythonhosted.org/pyserial/pyserial.html" target="_blank">pip install pyserial</a>. The installation procedure is detailed in the gitbook at <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie" target="_blank">Installing the library</a>.
+The ALR32XX module requires Python and the PySerial library to be installed: <a href="https://pythonhosted.org/pyserial/pyserial.html" target="_blank">pip install pyserial</a>. The installation procedure is detailed in the gitbook at <a href="https://elc-construction-electronique.gitbook.io/alr32xx-python-library-documentation-en/utilisation-de-la-librairie-python/installation-de-la-librairie" target="_blank">Installing the library</a>.
 
 
 The installation of the ALR32XX library is done in two ways: 
@@ -99,7 +99,7 @@ The program works in the form of a class, it is necessary to declare an object w
 If the attempt fails, you will be asked to connect the power supply manually via the Choix_port() function. This function will list your active ports and ask you to enter the number of the one to connect:</br>
 <img src=Documentation/Images/connect_manuel.PNG alt="Manually connect to power">
 </br>
-Once the connection is successful, you can use the library. For example X.Mesure_tension() to measure the voltage of your ALR3203. A list of available functions is given in the <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX/tree/main/Documentation">documentation</a> and on the <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie">Gitbook</a>
+Once the connection is successful, you can use the library. For example X.Mesure_tension() to measure the voltage of your ALR3203. A list of available functions is given in the <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX/tree/main/Documentation">documentation</a> and on the <a href="https://elc-construction-electronique.gitbook.io/alr32xx-python-library-documentation-en/utilisation-de-la-librairie-python/installation-de-la-librairie">Gitbook</a>
 </p>
 
 
