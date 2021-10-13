@@ -48,6 +48,14 @@ En cas de problème lors de l'utilisation de la librairie, veuillez nous contact
 
 
 
+</br>
+</br></br>
+</br></br>
+</br></br>
+</br></br>
+</br></br>
+</br></br>
+</br>
 
 
 
@@ -59,10 +67,9 @@ En cas de problème lors de l'utilisation de la librairie, veuillez nous contact
 
 
 
+<h1 id="EN">English version</h1>
 
-
-
-<p id="EN"> 
+<p> 
 Librairie <a href="https://www.python.org/downloads/" target="_blank" title="Lien d téléchargement Python" > Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
 </p>
 
