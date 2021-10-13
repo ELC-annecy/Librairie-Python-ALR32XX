@@ -1,3 +1,5 @@
+~~~ English version bellow ~~~
+
 # Librairie-Python-ALR32XX
 
 Documentation complète de la librairie : https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/
