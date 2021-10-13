@@ -4,8 +4,8 @@
 
 <br/>
 Documentation complète de la librairie : https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/
-Complete documentation of the library : 
-
+Complete documentation of the library : https://elc-construction-electronique.gitbook.io/alr32xx-python-library-documentation-en/
+<br/>
 <p id="FR"> 
 Librairie <a href="https://www.python.org/downloads/" target="_blank" title="Lien d téléchargement Python" > Python</a> pour piloter les alimentations programmables <strong>ALR3220, ALR3203, ALR3206D/T</strong> par une liaison série (USB, RS232, RS485). 
 </p>
@@ -68,7 +68,8 @@ En cas de problème lors de l'utilisation de la librairie, veuillez nous contact
 
 
 <h1 id="EN">English version</h1>
-
+</br>
+Complete documentation of the library : https://elc-construction-electronique.gitbook.io/alr32xx-python-library-documentation-en/
 <p> 
 	<a href="https://www.python.org/downloads/" target="_blank" title="Python download link" > Python</a> library to drive the <strong>ALR3220, ALR3203, ALR3206D/T</strong> programmable power supplies via a serial link (USB, RS232, RS485). 
 
