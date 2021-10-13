@@ -88,7 +88,7 @@ The installation of the ALR32XX library is done in two ways:
 
 </ul> 
 	
-<h2>using the module</h2>
+<h2>Using the module</h2>
 <p>
 Once the installation is finished you can access the library by "from ALR32XX import *". (if you install by pip, "from ALR32XX.ALR32XX import *"). </br>
 Connect the power supply to the computer via USB, RS232 or RS485. You can check the connection in the device manager and on the power supply screen:</br>.
@@ -96,7 +96,7 @@ Connect the power supply to the computer via USB, RS232 or RS485. You can check 
 </br>
 The program works in the form of a class, it is necessary to declare an object which will correspond to the power supply. For example for an ALR3203, the declaration would be "name=ALR32XX('ALR3203')". The program will then try to automatically establish a communication with the power supply and return Port=COM3; Name=ALR3203; Connection=OK. </br>
 If the attempt fails, you will be asked to connect the power supply manually via the Choix_port() function. This function will list your active ports and ask you to enter the number of the one to connect:</br>
-<img src=Documentation/Images/connect_manual.PNG alt="Manually connect to power">
+<img src=Documentation/Images/connect_manuel.PNG alt="Manually connect to power">
 </br>
 Once the connection is successful, you can use the library. For example X.Mesure_tension() to measure the voltage of your ALR3203. A list of available functions is given in the <a href="https://github.com/elc-construction-electronique/Librairie-Python-ALR32XX/tree/main/Documentation">documentation</a> and on the <a href="https://elc-construction-electronique.gitbook.io/librairie-python-alr32xx/utilisation-de-la-librairie-python/installation-de-la-librairie">Gitbook</a>
 </p>
