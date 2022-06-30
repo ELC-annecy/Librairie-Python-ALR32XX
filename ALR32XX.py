@@ -16,7 +16,7 @@
     *  ------------------------------------------------------------------- *
     *    1.0    08/09/2021    Y.M     Édition originale                    *
     *    1.2.1  08/10/2021    A.M     Correction et mise en ligne          *
-    *    1.2.2  30/06/2022    A.M     Ajout de la fonciton send_command    *
+    *    1.3    30/06/2022    A.M     Ajout de la fonciton send_command    *
     ************************************************************************
 """
 
