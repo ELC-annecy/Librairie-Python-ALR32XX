@@ -129,22 +129,28 @@ class ALR32XX:
         # Connexion Manuelle
         ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
         ligne_=1
-        if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
+        len_ports = len (ports)
+        if len_ports != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
             for q in ports:
                 print(str(ligne_)+" : " + str(q))
                 ligne_=ligne_+1
-            print (" ")
-            _portChoisi=input("Chosir parmi les différents ports trouvés : ")
+            print ("")
+
             #On établie la communication
+            _portChoisi=int(input("Chosir parmi les différents ports trouvés : "))
+            if(_portChoisi <= 1 or _portChoisi > len_ports):
+                raise Exception("Index out of range")
+            psu_dev = str(ports[_portChoisi-1].device)
+
             try:
-                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
+                alim.__init__(psu_dev, baudrate=9600, bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
                 if alim.isOpen()==True:
-                    return (str(q.device))
+                    return (psu_dev)
             except IOError: #Si le port est déja ouvert, alors fermeture puis ouverture
                 alim.close()
                 alim.open()
-                return (str(q.device))
-                    
+                return (psu_dev)
+
 
     def __send (self, c_command): #Cette fonction établie la connexion avce le PC et l'ALR32XX puis envoie les commandes 
         command=c_command
