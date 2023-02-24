@@ -17,11 +17,13 @@
     *    1.0    08/09/2021    Y.M     Édition originale                    *
     *    1.2.1  08/10/2021    A.M     Correction et mise en ligne          *
     *    1.3    30/06/2022    A.M     Ajout de la fonciton send_command    *
+    *    1.3.1  15/02/2023    N.L     Correction Bug connection manuelle   *
+    *                                 Traduction en anglais des messages   *
     ************************************************************************
 """
 
 
-#Importation des bibliothèques
+# Importation of libraries
 import time
 from serial import*
 from io import*
@@ -31,30 +33,30 @@ import serial.tools.list_ports
 
 class ALR32XX:
 
-    """ Librairie Python pour piloter les alimentations programmables ALR3220, ALR3203, ALR3206D/T par une liaison série (USB, RS232, RS485). """
+    """ Python library to drive the ALR3220, ALR3203, ALR3206D/T programmable power supplies via a serial link (USB, RS232, RS485). """
 
 
     global alim
     alim=serial.Serial()
     
     
-    def __init__(self, c_nom=' '): #Initialise la classe ALR32XX en choisissant le nom de l'appareil.
-        print("Connexion à l'alimentation ...")
-        print(" ")
+    def __init__(self, c_nom=' '): # Initializes the ALR32XX class by choosing the device name.
+        print("Connection to the power supply ...")
+        print("")
         self.nom=c_nom
         self.port=self. __Connect_auto_toPort(self.nom)
         #self.port=self. __Connect_manuel_toPort()
         try :
-            print("Port="+self.port)
-            print("Nom="+ self.nom)
-            print("Connexion=OK") 
+            print("Port = "+self.port)
+            print("Nom = "+ self.nom)
+            print("Connection = OK") 
         except:
-            print("ERROR: Alimentation non trouvée")
+            print("ERROR: Alimentation not found")
         
      
             
-    def __param (self, c_parametre=' ', c_valeur=0): #Permet de chosir parmi les différents paramètres possibles
-        #volt=1000*millivolt
+    def __param (self, c_parametre=' ', c_valeur=0): # Allows you to choose between different possible parameters
+        # volt=1000*millivolt
         valeur=str(c_valeur)
         liste=['VOLT', 'CURR', 'OVP', 'OCP', 'OUT', 'VOLT1', 'CURR1', 'OVP1', 'OCP1', 'OUT1', 
         'VOLT2', 'CURR2', 'OVP2', 'OCP2', 'OUT2', 'VOLT3', 'CURR3', 'OVP3', 'OUT3', 'IDN', 'RCL', 'STO', 'REM', 'TRACK', 'MODE']
@@ -62,51 +64,51 @@ class ALR32XX:
             if c_parametre in liste:
                 return (c_parametre, valeur)
             else:
-                return("Il n'y a pas ce paramètre dans la liste")
+                return("There is no such parameter in the list")
 
 
-    def __command (self, c_parametre=' ', c_X=' ', c_nombre=0): #Cette fonction nous permet de créer notre chaine de commande 
+    def __command (self, c_parametre=' ', c_X=' ', c_nombre=0): # This function allows us to create our command string  
         X=c_X
         nombre=c_nombre
         parametre=c_parametre
-        if X=='WR': #Valable pour tous les paramètres sauf CURR3
+        if X=='WR': # Valid for all parameters except CURR3
             if parametre!='CURR3':
-                # Ecrire l'instruction nécessaire
-                #print("Opération d'écriture")
+                # Write the necessary instruction
+                #print("Writing operation")
                 param,value=self.__param(parametre,nombre)
                 chaine='0 '+param+' '+X+' '+str(value)+'\r'
                 return (chaine)
             else:
-                return ("Impossible d'effectuer cette operation")
-        elif X=='RD': #Valide pour tous paramètres, sauf : RCL, STO
+                return ("Unable to perform this operation")
+        elif X=='RD': # Valid for all parameters except : RCL, STO
             if parametre!='RCL' or parametre!='STO':
-                # Ecrire l'instruction nécessaire
-                #print("Opération de lecture")
+                # Write the necessary instruction
+                #print("Reading operation")
                 param, value=self.__param(parametre,0)
                 chaine='0 '+param+' '+X+'\r'
                 return (chaine)
             else:
-                return ("Impossible d'effectuer cette operation")
-        elif X=='MES': #Valide uniquement pour paramètres VOLT & CURR
+                return ("Unable to perform this operation")
+        elif X=='MES': # Valid only for parameters VOLT & CURR
             if parametre=='VOLT' or parametre=='CURR' or parametre=='VOLT1' or parametre=='VOLT2' or parametre=='CURR1' or parametre=='CURR2' or parametre=='CURR3':
-                # Ecrire l'instruction nécessaire
+                # Write the necessary instruction
                 param, value=self.__param(parametre,0)
                 chaine='0 '+param+' '+X+'\r'
                 return (chaine)
             else:
-                return ("Impossible d'effectuer cette operation")
+                return ("Unable to perform this operation")
         else:
-            return (print("Opération inconnue"))
+            return (print("Unknown operation"))
 
 
-    def __write_command_toByte (self, parametre=' ', commande=' ', valeur=0): #Cette fonction convertie notre chaine tableau de bytes 
-        #Définition de la chaine à envoyé
+    def __write_command_toByte (self, parametre=' ', commande=' ', valeur=0): # This function converts our string into an array of bytes
+        # Definition of the chain to be sent
         chaine=self.__command (str(parametre), str(commande), str(valeur))
         reponse=bytearray(chaine.encode('ASCII'))
         return (reponse)
 
 
-    def __Connect_auto_toPort(self, c_name=' '):#Cette fonction permet de se connecter automatiquement au port de l'alimentation lors de la phase d'initialisation de la bibliothèque
+    def __Connect_auto_toPort(self, c_name=' '):# This function automatically connects to the power supply port during the initialization phase of the instance
         name=c_name
         ports=serial.tools.list_ports.comports(include_links=False)
         if len(ports)!=0:
@@ -125,28 +127,35 @@ class ALR32XX:
                     alim.close()
 
 
-    def __Connect_manuel_toPort(self): #Cette fonction permet de se connecter manuellement au port de l'alimentation lors de la phase d'initialisation de la bibliothèque
-        # Connexion Manuelle
-        ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
-        ligne_=1
-        if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
+    def __Connect_manuel_toPort(self): # This function allows you to manually connect to the power port during the initialization phase of the instance
+        # Manual Connection
+        ports = serial.tools.list_ports.comports(include_links=False) # Command to search for ports
+        ligne = 1
+        len_ports = len(ports)
+        if len_ports != 0:  # At least one active port has been found.
             for q in ports:
-                print(str(ligne_)+" : " + str(q))
-                ligne_=ligne_+1
-            print (" ")
-            _portChoisi=input("Chosir parmi les différents ports trouvés : ")
-            #On établie la communication
+                print(str(ligne)+" : "+str(q))
+                ligne=ligne+1
+            print ("")
+
+            portChoisi=int(input("Choose among the different ports found : "))
+
+            if(portChoisi < 1 or portChoisi > len_ports):
+                raise Exception("Index out of range")
+            
+            # The communication is established
+            psu_device = str(ports[portChoisi-1].device)
             try:
-                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
+                alim.__init__((psu_device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
                 if alim.isOpen()==True:
-                    return (str(q.device))
-            except IOError: #Si le port est déja ouvert, alors fermeture puis ouverture
+                    return (psu_device)
+            except IOError: # If the port is already open, then it is closed and reopened
                 alim.close()
                 alim.open()
-                return (str(q.device))
+                return (psu_device)
                     
 
-    def __send (self, c_command): #Cette fonction établie la connexion avce le PC et l'ALR32XX puis envoie les commandes 
+    def __send (self, c_command): # This function establishes the connection with the computer and the ALR32XX and sends the commands  
         command=c_command
         if alim.isOpen()==True:
             alim.write(command)
@@ -165,50 +174,55 @@ class ALR32XX:
         return reponse
 
 
-    def List_ports (self): #cette fonction établie la liste des différents ports présents dans le PC
-        ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
-        if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
+    def List_ports (self): # This function lists the different ports present on the Computer
+        ports = serial.tools.list_ports.comports(include_links=False) # Command to search for ports
+        if len (ports) != 0:  # At least one active port has been found.
             for p in ports:
                 print(p)
-        else: #On n'a pas trouvé de port actif
-            print ("Aucun port actif n'a été trouvé")
+        else: # No active port was found
+            print ("No active port was found")
 
 
-    def Choix_port (self): #Cette fonction permet de se connecter manuellement au port de l'alimentation et retourne le port choisi
-        # Connexion Manuelle
-        ports = serial.tools.list_ports.comports(include_links=False) #commande pour rechercher les ports
+    def Choix_port (self): # This function allows you to manually connect to the power supply port and returns the selected port
+        # Manual Connection
+        ports = serial.tools.list_ports.comports(include_links=False) # Command to search for ports
         ligne=1
-        if len (ports) != 0:  #On a trouvé au moins un port actif. La fonction "len()" renvoie le nombre des éléments (ou la longueur) dans un objet.
+        if len (ports) != 0:  # At least one active port has been found.
             for p in ports:
                 print(str(ligne)+" : " + str(p))
                 ligne=ligne+1
-            print (" ")
-            _portChoisi=input("Chosir parmi les différents ports trouvés : ")
-            #On établie la communication
+            print ("")
+            
+            portChoisi=int(input("Choose among the different ports found : "))
+
+            if(portChoisi < 1 or portChoisi > len_ports):
+                raise Exception("Index out of range")
+
+            # The communication is established
+            psu_device = str(ports[portChoisi-1].device)
             try:
-                alim.__init__(str(ports[int(_portChoisi)-1].device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
+                alim.__init__((psu_device), baudrate=9600 , bytesize=serial.SEVENBITS, parity=serial.PARITY_EVEN, stopbits=serial.STOPBITS_ONE, timeout=float(1))
                 if alim.isOpen()==True:
                     print ("Connexion O.K")
-                    portChoisi=ports[int(_portChoisi)-1].device
-                    return (str(portChoisi))
-            except IOError: # Si le port est déja ouvert, alors fermeture puis ouverture
+                    return (psu_device)
+            except IOError: # If the port is already open, then it is closed and reopened
                 alim.close()
                 alim.open()
                 print ("Connexion O.K")
-                portChoisi=ports[int(_portChoisi)-1].device
-                return (str(portChoisi))
-        else: #On n'a pas trouvé de port actif
-            print ("Aucun port actif n'a été trouvé")
+                return (psu_device)
+           
+        else: # No active port was found
+            print ("No active port was found")
                                      
 
-    def Deconnexion (self):#Passe l'alimentation en local puis désactive le port
+    def Deconnexion (self):# Switches the power supply to local mode and then disables the port
         chaine=self.__write_command_toByte('REM', 'WR', 0)
         self.__send(chaine)
         alim.close()
         print('Port is OFF')
 
 
-    def IDN (self): #Renvoit l'IDN de l'alimentation
+    def IDN (self): # Returns the IDN of the power supply
         chaine=self.__write_command_toByte('IDN', 'RD')
         reponse=self.__send(chaine)
         if self.nom in reponse:
@@ -217,7 +231,7 @@ class ALR32XX:
             print(reponse)
 
 
-    def Read_state_ALR (self, c_parametre='OUT'): #Permet de lire l'etat des modes OUT, REM, TRACK, MODE des alimentations 
+    def Read_state_ALR (self, c_parametre='OUT'): # Allows you to read the OUT, REM, TRACK, MODE status of the power supplies
         parametre=c_parametre
         liste1= ['REM','OUT'] 
         liste2= ['REM', 'TRACK', 'MODE','OUT']
@@ -242,7 +256,7 @@ class ALR32XX:
                     return(str(reponse[2:len(reponse)]))
 
 
-    def OUT (self, c_etat=0, c_out=1): #Choisir l'état de la sortie ( "ON" ou "OFF")
+    def OUT (self, c_etat=0, c_out=1): # Choose the output status ( "ON" or "OFF")
         out=c_out
         etat=c_etat
         if etat=='ON' or etat==1:
@@ -312,41 +326,41 @@ class ALR32XX:
                         return (str(reponse[2:len(reponse)]))
 
 
-    def MODE(self, c_mode): #Choisir entre le mode "SERIE", "PARALLELE" et "TRACKING" des alimentations 
+    def MODE(self, c_mode): # Choose between "SERIES", "PARALLEL" and "TRACKING" mode of power supplies
         mode=c_mode
         if mode=='NORMAL'or mode==0:
             if self.nom=='ALR3203' or self.nom=='ALR3220':
-                print("Opération impossible sur l'ALR3203 et l'ALR3220")
+                print("Operation not possible on ALR3203 and ALR3220")
             elif self.nom=='ALR3206D' or self.nom=='ALR3206T':
                 chaine=self.__write_command_toByte('MODE', 'WR', 0)
                 reponse=self.__send(chaine)
                 return (str(reponse[2:len(reponse)]))
         elif mode=='SERIE'or mode==1:
             if self.nom=='ALR3203' or self.nom=='ALR3220':
-                print("Opération impossible sur l'ALR3203 et l'ALR3220")
+                print("Operation not possible on ALR3203 and ALR3220")
             elif self.nom=='ALR3206D' or self.nom=='ALR3206T':
                 chaine=self.__write_command_toByte('MODE', 'WR', 1)
                 reponse=self.__send(chaine)
                 return (str(reponse[2:len(reponse)]))
         elif mode=='PARALLELE'or mode==2:
             if self.nom=='ALR3203' or self.nom=='ALR3220':
-                print("Opération impossible sur l'ALR3203 et l'ALR3220")
+                print("Operation not possible on ALR3203 and ALR3220")
             elif self.nom=='ALR3206D' or self.nom=='ALR3206T':
                 chaine=self.__write_command_toByte('MODE', 'WR', 2)
                 reponse=self.__send(chaine)
                 return (str(reponse[2:len(reponse)]))
         elif mode=='TRACKING' or mode==3:
             if self.nom=='ALR3203' or self.nom=='ALR3220':
-                print("Opération impossible sur l'ALR3203 et l'ALR3220")
+                print("Operation not possible on ALR3203 and ALR3220")
             elif self.nom=='ALR3206D' or self.nom=='ALR3206T':
                 chaine=self.__write_command_toByte('MODE', 'WR', 3)
                 reponse=self.__send(chaine)
                 return (str(reponse[2:len(reponse)]))
         else :
-            print("Mode non reconnu")
+            print("Unrecognised mode")
 
 
-    def Remote(self, c_mode): #Choix entre mode "REMOTE" et mode "LOCAL"
+    def Remote(self, c_mode): # Choice between "REMOTE" and "LOCAL" mode
         mode=c_mode
         if mode=='REMOTE'or mode==1:
             chaine=self.__write_command_toByte('REM', 'WR', 1)
@@ -358,20 +372,20 @@ class ALR32XX:
             return (str(reponse[2:len(reponse)]))
 
 
-    def STO(self, c_case_memory=1): #Permet de sauvegarder la configuration (1 à 15)
+    def STO(self, c_case_memory=1): # Saves the configuration (1 to 15)
         case_memory=int(c_case_memory)
         if case_memory >=1 and case_memory <= 15:
             chaine=self.__write_command_toByte('STO', 'WR', case_memory)
             reponse=self.__send(chaine)
             return (str(reponse[2:len(reponse)]))
         else:
-            case_memory=input("Choisir une case mémoire entre 1 et 15")
+            case_memory=input("Choose a memory cell between 1 and 15")
             chaine=self.__write_command_toByte('STO', 'WR', case_memory)
             reponse=self.__send(chaine)
             return (str(reponse[2:len(reponse)]))
 
 
-    def RCL(self, c_case_memory=1): #Permet de rappeler la configuration enregistrée (1 à 15)
+    def RCL(self, c_case_memory=1): # Recalls the saved configuration (1 to 15)
 
         case_memory=int(c_case_memory)
         if case_memory >=1 and case_memory <= 15:
@@ -379,13 +393,13 @@ class ALR32XX:
             reponse=self.__send(chaine)
             return (str(reponse[2:len(reponse)]))
         else:
-            case_memory=input("Choisir une case memoire entre 1 et 15")
+            case_memory=input("Choose a memory cell between 1 and 15")
             chaine=self.__write_command_toByte('RCL', 'WR', case_memory)
             reponse=self.__send(chaine)
             return (str(reponse[2:len(reponse)]))
 
 
-    def TRACK(self, c_mode): #Permet d’activer le mode Tracking isolé ou Tracking
+    def TRACK(self, c_mode): # Enables the Isolated Tracking or Liked Tracking mode
         mode=c_mode
         if self.nom=='ALR3206D' or self.nom=='ALR3206T':
             self.MODE('TRACKING')
@@ -398,10 +412,10 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (str(reponse[2:len(reponse)]))
         else :
-            print("Opération impossible sur l'ALR3203 et l'ALR3220")
+            print("Operation not possible on ALR3203 and ALR3220")
 
 
-    def Mesure_tension(self, c_voie=1): #Permet de mesurer la tension sur une des voies de l’alimentation.
+    def Mesure_tension(self, c_voie=1): # Used to measure the voltage on one of the power supply channels.
         voie=c_voie
         if self.nom=='ALR3203' or self.nom=='ALR3220':
             if voie==1:
@@ -409,7 +423,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'MES')
@@ -420,7 +434,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'MES')
@@ -431,10 +445,10 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             elif voie==3:
-                print("Mesure en tension impossible sur CH3")
+                print("Voltage measurement not possible on CH3")
         
 
-    def Consigne_tension(self, c_voie=1): #Permet de lire la consigne en tension sur une des voies de l’alimentation.
+    def Consigne_tension(self, c_voie=1): # Used to read the voltage setpoint on one of the power supply channels.
         voie=c_voie
         if self.nom=='ALR3203' or self.nom=='ALR3220':
             if voie==1:
@@ -442,7 +456,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'RD')
@@ -453,7 +467,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'RD')
@@ -469,7 +483,7 @@ class ALR32XX:
                 return (float(reponse[5:len(reponse)])/1000)
 
 
-    def Mesure_courant(self, c_voie=1): #Permet de mesurer le courant sur une des voies de l’alimentation 
+    def Mesure_courant(self, c_voie=1): # Used to measure the current on one of the power supply channels.
         voie=c_voie
         if self.nom=='ALR3203' or self.nom=='ALR3220':
             if voie==1:
@@ -477,7 +491,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'MES')
@@ -488,7 +502,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'MES')
@@ -512,7 +526,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'RD')
@@ -523,7 +537,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'RD')
@@ -534,10 +548,10 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (float(reponse[5:len(reponse)])/1000)
             elif voie==3:
-                print("Il n'y a pas de consigne en courant sur CH3")
+                print("There is no current setpoint on CH3")
 
 
-    def Ecrire_tension(self, c_valeur=0, c_voie=1): #Permet d’envoyer une valeur de tension à l’alimentation
+    def Ecrire_tension(self, c_valeur=0, c_voie=1): # Used to send a voltage value to the power supply
         temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
@@ -547,7 +561,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (reponse[2:len(reponse)])
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'WR', valeur)
@@ -558,7 +572,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (reponse[2:len(reponse)])
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('VOLT1', 'WR', valeur)
@@ -574,7 +588,7 @@ class ALR32XX:
                 return (reponse[2:len(reponse)])
 
 
-    def Ecrire_courant(self, c_valeur=0, c_voie=1): #Permet d’envoyer une valeur de courant à l’alimentation
+    def Ecrire_courant(self, c_valeur=0, c_voie=1): # Used to send a current value to the power supply
         temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
@@ -584,7 +598,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (reponse[2:len(reponse)])
             else :
-                print("L'alimentation possède une seule voie")
+                print("Power supply has a single channel")
         elif self.nom=='ALR3206D':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'WR', valeur)
@@ -595,7 +609,7 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (reponse[2:len(reponse)])
             else :
-                print("L'alimentation possède uniquement 2 voies")
+                print("Power supply has just two channels")
         elif self.nom=='ALR3206T':
             if voie==1:
                 chaine=self.__write_command_toByte('CURR1', 'WR', valeur)
@@ -606,10 +620,10 @@ class ALR32XX:
                 reponse=self.__send(chaine)
                 return (reponse[2:len(reponse)])
             elif voie==3:
-                print("Il n'y a pas de consigne en courant sur CH3")
+                print("There is no current setpoint on CH3")
     
 
-    def OVP(self, c_valeur=0, c_voie=1): #Permet de régler la limitation de tension sur une voie de l'alimentation
+    def OVP(self, c_valeur=0, c_voie=1): # Used to set the voltage limitation on one channel of the power supply
         temp=float(c_valeur)*1000
         voie=c_voie
         valeur=temp
@@ -620,7 +634,7 @@ class ALR32XX:
                     reponse=self.__send(chaine)
                     return (reponse[2:len(reponse)])
                 else :
-                    print("L'alimentation possède une seule voie")
+                    print("Power supply has a single channel")
             elif self.nom=='ALR3206D':
                 if voie==1:
                     chaine=self.__write_command_toByte('OVP1', 'WR', valeur)
@@ -631,7 +645,7 @@ class ALR32XX:
                     reponse=self.__send(chaine)
                     return (reponse[2:len(reponse)])
                 else :
-                    print("L'alimentation possède uniquement 2 voies")
+                    print("Power supply has just two channels")
             elif self.nom=='ALR3206T':
                 if voie==1:
                     chaine=self.__write_command_toByte('OVP1', 'WR', valeur)
@@ -647,7 +661,7 @@ class ALR32XX:
                     return (reponse[2:len(reponse)])
                         
 
-    def OCP(self, c_valeur=0, c_voie=1): #Permet de régler la limitation de courant sur une voie de l'alimentation
+    def OCP(self, c_valeur=0, c_voie=1): # Used to set the current limitation on one channel of the power supply
        temp=float(c_valeur)*1000
        voie=c_voie
        valeur=temp
@@ -658,7 +672,7 @@ class ALR32XX:
                     reponse=self.__send(chaine)
                     return (reponse[2:len(reponse)])
                 else :
-                    print("L'alimentation possède une seule voie")
+                    print("Power supply has a single channel")
             elif self.nom=='ALR3206D':
                 if voie==1:
                     chaine=self.__write_command_toByte('OCP1', 'WR', valeur)
@@ -669,7 +683,7 @@ class ALR32XX:
                     reponse=self.__send(chaine)
                     return (reponse[2:len(reponse)])
                 else :
-                    print("L'alimentation possède uniquement 2 voies")
+                    print("Power supply has just two channels")
             elif self.nom=='ALR3206T':
                 if voie==1:
                     chaine=self.__write_command_toByte('OCP1', 'WR', valeur)
@@ -680,10 +694,10 @@ class ALR32XX:
                     reponse=self.__send(chaine)
                     return (reponse[2:len(reponse)])
                 elif voie==3:
-                    print("Il n'y a pas d'OCP sur CH3")
+                    print("There is no OCP on CH3")
 
 
-    def OVP_OCP(self, c_parametre='OVP', c_voie=1): #Permet de lire la valeur d’OVP et d’OCP.
+    def OVP_OCP(self, c_parametre='OVP', c_voie=1): #Used to read the value of OVP and OCP.
             voie=c_voie
             parametre=c_parametre
             if parametre=='OVP':
@@ -693,7 +707,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     else :
-                        print("L'alimentation possède une seule voie")
+                        print("Power supply has a single channel")
                 elif self.nom=='ALR3206D':
                     if voie==1:
                         chaine=self.__write_command_toByte('OVP1', 'RD')
@@ -704,7 +718,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     else :
-                        print("L'alimentation possède uniquement 2 voies")
+                        print("Power supply has just two channels")
                 elif self.nom=='ALR3206T':
                     if voie==1:
                         chaine=self.__write_command_toByte('OVP1', 'RD')
@@ -715,7 +729,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     elif voie==3:
-                        print("Il n'y a pas d'OVP sur CH3")
+                        print("There is no OVP on CH3")
             elif parametre=='OCP':
                 if self.nom=='ALR3203' or self.nom=='ALR3220':
                     if voie==1:
@@ -723,7 +737,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     else :
-                        print("L'alimentation possède une seule voie")
+                        print("Power supply has a single channel")
                 elif self.nom=='ALR3206D':
                     if voie==1:
                         chaine=self.__write_command_toByte('OCP1', 'RD')
@@ -734,7 +748,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     else :
-                        print("L'alimentation possède uniquement 2 voies")
+                        print("Power supply has just two channels")
                 elif self.nom=='ALR3206T':
                     if voie==1:
                         chaine=self.__write_command_toByte('OCP1', 'RD')
@@ -745,7 +759,7 @@ class ALR32XX:
                         reponse=self.__send(chaine)
                         return (float(reponse[5:len(reponse)])/1000)
                     elif voie==3:
-                        print("Il n'y a pas d'OCP sur CH3")
+                        print("There is no OCP on CH3")
 
 
-#main programme
+#main programme here
